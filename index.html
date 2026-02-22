@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Francis Niel · brutalist B&W + motion + color pic</title>
-  <!-- ========== CSS (separated logically) ========== -->
+  <title>Francis Niel · brutalist hollow squares + color pic</title>
   <style>
-    /* ----- RESET • BLACK & WHITE NEOBRUTALISM • RESPONSIVE • ANIMATIONS (photo stays color) ----- */
+    /* ----- RESET • BLACK & WHITE NEOBRUTALISM • HOLLOW SQUARE PATTERN • RESPONSIVE • ANIMATIONS ----- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* ===== HOLLOW SQUARE PATTERN BACKGROUND ===== */
     body {
-      background: #000;          /* pure black background */
+      background-color: #ffffff;
+      background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 32px, #000 30px, #000 32px),
+        repeating-linear-gradient(135deg, transparent, transparent 32px, #000 30px, #000 32px);
       font-family: 'Space Grotesk', 'Arial Black', 'Helvetica Bold', 'Impact', sans-serif;
       line-height: 1.3;
       color: #000;
@@ -24,7 +27,7 @@
       align-items: center;
     }
 
-    /* main container — brutal B&W */
+    /* main container — brutal B&W with white background to stand out from pattern */
     .brutal-container {
       max-width: 1200px;
       width: 100%;
@@ -33,6 +36,9 @@
       box-shadow: 12px 12px 0 0 #000;
       padding: 1.8rem 1.5rem 2.2rem 1.5rem;
       animation: containerFloat 6s infinite ease-in-out;
+      /* Add a subtle outline to make it pop from pattern */
+      outline: 2px solid #fff;
+      outline-offset: 4px;
     }
 
     @keyframes containerFloat {
@@ -378,7 +384,6 @@
 
     .achievement-item span:first-child {
       font-size: 2.5rem;
-      /* emoji keep color, but we want natural, no filter */
     }
 
     /* stats grid */
@@ -400,6 +405,13 @@
       padding: 1.2rem 0.5rem;
       text-align: center;
       background: #fff;
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+
+    .stat-cell div:first-child {
+      font-size: 2.2rem;
+      font-weight: 900;
     }
 
     /* footer animation */
@@ -435,6 +447,7 @@
       border: 4px solid #000;
       display: inline-block;
       animation: socialShake 4s infinite;
+      cursor: default;
     }
     @keyframes socialShake {
       0% { transform: rotate(0deg); }
@@ -449,6 +462,43 @@
       color: #000;
       transform: scale(1.1) rotate(5deg);
       animation: none;
+    }
+
+    /* badge style */
+    .badge {
+      background: #000;
+      color: #fff;
+      padding: 0.3rem 1.2rem;
+      border: 4px solid #000;
+      display: inline-block;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .badge:hover {
+      background: #fff;
+      color: #000;
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 #000;
+    }
+
+    /* skill tags */
+    .skill-tag {
+      background: #000;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border: 3px solid #000;
+      display: inline-block;
+      margin: 0.2rem;
+      font-weight: 600;
+      transition: 0.1s;
+    }
+
+    .skill-tag:hover {
+      background: #fff;
+      color: #000;
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 #000;
     }
 
     /* mobile fine-tuning */
@@ -468,21 +518,23 @@
         font-size: 1.4rem;
         padding: 0.8rem 1.2rem;
       }
-    }
-
-    /* NO global grayscale — only desired elements. photo stays color */
-    /* ensure no accidental filter on images */
-    img:not(.no-filter) {
-      filter: none; 
-    }
-    .emoji {
-      filter: none;
+      .stat-cell {
+        font-size: 1.2rem;
+      }
+      .stat-cell div:first-child {
+        font-size: 1.8rem;
+      }
     }
 
     hr {
       border: none;
       border-top: 8px solid #000;
       margin: 2rem 0;
+    }
+
+    /* ensure no accidental filter on images */
+    img {
+      filter: none;
     }
   </style>
 </head>
@@ -503,27 +555,27 @@
         <div class="subhead">◼ FULL-STACK IN TRAINING ◼</div>
         <div class="university">⚡ UNIVERSITY OF SAN CARLOS · CEBU ⚡</div>
         <div style="margin-top: 1.2rem;">
-          <span class="badge" style="background:#000; color:#fff; padding:0.3rem 1.2rem; border:4px solid #000; display:inline-block;">year II · batch 2025</span>
+          <span class="badge">year II · batch 2025</span>
         </div>
       </div>
     </header>
 
     <!-- INFO PANEL (about + stack) -->
     <div class="info-panel">
-      <div class="left">
-        <h3>> WHO AM I?</h3>
-        <p style="border: 3px solid #000; padding: 1rem; background: #fff; box-shadow: 4px 4px 0 #000;">2nd year IT student from USC. Brutalist coder, coffee addict, loves overengineered side projects. Pure black & white — except my photo!</p>
+      <div class="left" style="flex:1">
+        <h3 style="font-size:2rem; margin-bottom:1rem;">> WHO AM I?</h3>
+        <p style="border: 3px solid #000; padding: 1rem; background: #fff; box-shadow: 4px 4px 0 #000; font-size:1.4rem;">2nd year IT student from USC. Brutalist coder, coffee addict, loves overengineered side projects. Pure black & white — except my photo!</p>
       </div>
-      <div class="right">
-        <h3>> STACK / WEAPONS</h3>
+      <div class="right" style="flex:2">
+        <h3 style="font-size:2rem; margin-bottom:1rem;">> STACK / WEAPONS</h3>
         <div>
-          <span class="skill-tag" style="background:#000; color:#fff; padding:0.6rem 1.2rem; border:3px solid #000; display:inline-block; margin:0.2rem;">JAVA</span>
-          <span class="skill-tag" style="background:#000; color:#fff; padding:0.6rem 1.2rem; border:3px solid #000; display:inline-block; margin:0.2rem;">PYTHON</span>
-          <span class="skill-tag" style="background:#000; color:#fff; padding:0.6rem 1.2rem; border:3px solid #000; display:inline-block; margin:0.2rem;">HTML/CSS</span>
-          <span class="skill-tag" style="background:#000; color:#fff; padding:0.6rem 1.2rem; border:3px solid #000; display:inline-block; margin:0.2rem;">JAVASCRIPT</span>
-          <span class="skill-tag" style="background:#000; color:#fff; padding:0.6rem 1.2rem; border:3px solid #000; display:inline-block; margin:0.2rem;">C</span>
-          <span class="skill-tag" style="background:#000; color:#fff; padding:0.6rem 1.2rem; border:3px solid #000; display:inline-block; margin:0.2rem;">REACT</span>
-          <span class="skill-tag" style="background:#000; color:#fff; padding:0.6rem 1.2rem; border:3px solid #000; display:inline-block; margin:0.2rem;">MYSQL</span>
+          <span class="skill-tag">JAVA</span>
+          <span class="skill-tag">PYTHON</span>
+          <span class="skill-tag">HTML/CSS</span>
+          <span class="skill-tag">JAVASCRIPT</span>
+          <span class="skill-tag">REACT</span>
+          <span class="skill-tag">MYSQL</span>
+          <span class="skill-tag">C</span>
         </div>
       </div>
     </div>
@@ -533,15 +585,15 @@
       <h2>🏆 ACHIEVEMENTS</h2>
       <div class="achievement-item">
         <span>🥇</span>
-        <span>Dean's Lister · 1st Year, 1st - 2nd Semester</span>
+        <span style="font-size:1.4rem; font-weight:600;">Dean's Lister · 1st Year, 1st - 2nd Semester</span>
       </div>
       <div class="achievement-item">
         <span>🏅</span>
-        <span>Leadership Award · USC IT Organization</span>
+        <span style="font-size:1.4rem; font-weight:600;">Leadership Award · USC IT Organization</span>
       </div>
       <div class="achievement-item">
         <span>📜</span>
-        <span>Networking - Cisco Certificate</span>
+        <span style="font-size:1.4rem; font-weight:600;">Networking - Cisco Certificate</span>
       </div>
     </div>
 
@@ -551,29 +603,29 @@
       <div class="project-grid">
         <!-- card 1 -->
         <div class="card">
-          <h4>Hike Kompanion</h4>
-          <p>Hike Companion with tracking & routes.</p>
+          <h4 style="font-size:2rem; border-bottom:3px solid #000; padding-bottom:0.5rem;">Hike Kompanion</h4>
+          <p style="font-size:1.3rem; margin:1rem 0;">Hike Companion with tracking & routes.</p>
           <div class="tech-tags"><span>HTML</span><span>JS</span><span>REACT</span><span>CSS</span></div>
           <a href="https://hi-kompanion.vercel.app/" class="live-btn" target="_blank">🔴 LIVE SITE ↗</a>
         </div>
         <!-- card 2 -->
         <div class="card">
-          <h4>Team Selektor</h4>
-          <p>Login, pick, meet & compete.</p>
+          <h4 style="font-size:2rem; border-bottom:3px solid #000; padding-bottom:0.5rem;">Team Selektor</h4>
+          <p style="font-size:1.3rem; margin:1rem 0;">Login, pick, meet & compete.</p>
           <div class="tech-tags"><span>HTML</span><span>JS</span><span>REACT</span></div>
           <a href="https://sporteam.vercel.app/" class="live-btn" target="_blank">🔴 LIVE SITE ↗</a>
         </div>
         <!-- card 3 -->
         <div class="card">
-          <h4>USC GPA</h4>
-          <p>Mock grade portal – brutal & functional.</p>
+          <h4 style="font-size:2rem; border-bottom:3px solid #000; padding-bottom:0.5rem;">USC GPA</h4>
+          <p style="font-size:1.3rem; margin:1rem 0;">Mock grade portal – brutal & functional.</p>
           <div class="tech-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
           <a href="https://uscgpa.vercel.app/" class="live-btn" target="_blank">🔴 LIVE SITE ↗</a>
         </div>
         <!-- card 4 -->
         <div class="card">
-          <h4>Sched Planner</h4>
-          <p>A Simple and Useful Tool for students that lets you keeps track of your Schedules</p>
+          <h4 style="font-size:2rem; border-bottom:3px solid #000; padding-bottom:0.5rem;">Sched Planner</h4>
+          <p style="font-size:1.3rem; margin:1rem 0;">A Simple and Useful Tool for students that lets you keeps track of your Schedules</p>
           <div class="tech-tags"><span>NEOCSS</span><span>HTML</span></div>
           <a href="https://schedplanner.vercel.app/" class="live-btn" target="_blank">🔴 LIVE SITE ↗</a>
         </div>
@@ -583,14 +635,14 @@
     <!-- extra row with two cards (animations) -->
     <div style="display: flex; flex-wrap: wrap; gap: 1.8rem; margin: 2rem 0;">
       <div class="extra-card" style="flex:1 1 240px;">
-        <h4>inventory·sys</h4>
-        <p>Python + SQLite warehouse CLI.</p>
+        <h4 style="font-size:2rem; border-bottom:3px solid #000; padding-bottom:0.5rem;">inventory·sys</h4>
+        <p style="font-size:1.3rem; margin:1rem 0;">Python + SQLite warehouse CLI.</p>
         <div class="tech-tags"><span>PYTHON</span><span>SQL</span></div>
         <a href="#" class="live-btn" style="font-size:1.5rem;">🔴 LIVE SITE ↗</a>
       </div>
       <div class="extra-card" style="flex:1 1 240px;">
-        <h4>dorm·finder</h4>
-        <p>Map of affordable dorms, Talamban.</p>
+        <h4 style="font-size:2rem; border-bottom:3px solid #000; padding-bottom:0.5rem;">dorm·finder</h4>
+        <p style="font-size:1.3rem; margin:1rem 0;">Map of affordable dorms, Talamban.</p>
         <div class="tech-tags"><span>JS</span><span>LEAFLET</span></div>
         <a href="https://dormfinder-blond.vercel.app" class="live-btn" style="font-size:1.5rem;" target="_blank">🔴 LIVE SITE ↗</a>
       </div>
@@ -604,7 +656,7 @@
       <div class="stat-cell"><div>∞</div><div>COFFEE CUPS</div></div>
     </div>
 
-    <!-- photo reminder / extra block (COLOR emoji / no filter) -->
+    <!-- photo reminder / extra block -->
     <div style="border: 4px solid #000; padding: 1.5rem; background: #fff; box-shadow: 12px 12px 0 #000; margin: 2rem 0; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
       <div style="width: 80px; height: 80px; background: #000; border: 5px solid #000; box-shadow: inset -4px -4px 0 #fff, 6px 6px 0 #000;"></div>
       <span style="font-size: 1.8rem; font-weight: 800;">ANOTHER PHASE — more snapshots soon.</span>
@@ -631,18 +683,17 @@
     </div>
   </div>
 
-  <!-- ========== JS (separated, minimal) ========== -->
   <script>
     (function() {
       // fix placeholder links
       document.querySelectorAll('.live-btn[href="#"]').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
-          alert('Live site placeholder — deploy your project!');
+          alert('Live site coming soon!');
         });
       });
-      console.log('B&W with animations · photo stays color · mobile ready');
+      console.log('Hollow square pattern background · photo stays color · mobile ready');
     })();
   </script>
 </body>
-</html>
+</html> 
